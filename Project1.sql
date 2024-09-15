@@ -10,14 +10,14 @@ order by 1,2
 
 
 -- looking at total cases vs population
--- What perentage gote covid
+-- What percentage got covid
 
 Select location,date,total_cases,new_cases,(total_deaths/population)* 100 As Infected_person_percentages
 From portfolioproject..Covid_deaths
 Where location = 'India'
 order by 1,2
 
---Which counties has the highest infection rate compare to population
+--Which countries have the highest infection rate compared to population
 
 Select location,population,MAX(total_cases) As Highest_infection_count,MAX(total_cases/population)* 100 As Infected_population_percentages
 From portfolioproject..Covid_deaths
@@ -25,7 +25,7 @@ Group by location, population
 order by Infected_population_percentages desc
 
 
---Which contries has the highest death rate per population
+--Which countries have the highest death rate per population
 
 Select location,MAX(total_deaths) As Highest_death_count --,MAX(total_deaths/population)* 100 As Death_percentages
 From portfolioproject..Covid_deaths
@@ -51,9 +51,9 @@ Where continent is not null
 --Group by date
 order by 1,2
 
--- Totalpopulation Vs vaccination
+-- population vs. vaccination
 
-With PopVsVac (continent,location,date,population,new_vaccinations,RollingPeopleVaccination)
+With PopVsVac (continent, location,date, population,new_vaccinations, RollingPeopleVaccination)
 AS
 
 (Select dea.continent,dea.location,dea.date,dea.population, vac.new_vaccinations
